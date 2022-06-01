@@ -1,0 +1,46 @@
+name: CI
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  test:
+    strategy:
+      matrix:
+        ruby-version: [ '3.0' ]
+    runs-on: ubuntu-latest
+    env:
+      RAILS_ENV: development
+    steps:
+      - uses: actions/checkout@v3
+      - uses: ruby/setup-ruby@v1
+        with:
+          node-version: ${{ matrix.ruby-version }}
+      - run: bundle install
+      - run: bundle exec rubocop
+      - run: bundle exec rake test
+  deploy-staging:
+    if: github.ref_name == 'main'
+    needs:
+      - test
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: staging deploy
+        run: |
+          echo "deployment steps will run here"
+          exit 0
+  deploy-prod:
+    if: github.ref_name == 'main'
+    needs:
+      - test
+      - deploy-staging
+    environment: prod
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: staging deploy
+        run: |
+          echo "deployment steps will run here"
+          exit 0
