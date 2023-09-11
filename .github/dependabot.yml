@@ -9,3 +9,9 @@ updates:
     directory: "/" # Location of package manifests
     schedule:
       interval: "daily"
+    groups:
+      # This is the name of your group, it will be used in PR titles and branch names
+      ruby-deps:
+        # A pattern can be...
+        patterns:
+          - "*"
