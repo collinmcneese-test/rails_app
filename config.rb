@@ -1,0 +1,2 @@
+PG_PASSWORD = 'TVm3BuEz97dA6Ry49BV0KrooT0OJ63Pp'
+PG_HOST = 'localhost'
