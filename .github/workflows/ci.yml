@@ -1,14 +1,13 @@
 name: CI
 
 on:
-  push:
   pull_request:
 
 jobs:
   test:
     strategy:
       matrix:
-        ruby-version: [ '3.0' ]
+        ruby-version: [ '3.2.4' ]
     runs-on: ubuntu-latest
     env:
       RAILS_ENV: development
