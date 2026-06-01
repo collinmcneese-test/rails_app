@@ -5,21 +5,25 @@
 
 version: 2
 updates:
-  - package-ecosystem: "bundler" # See documentation for possible values
-    directory: "/" # Location of package manifests
-    schedule:
-      interval: "daily"
-    groups:
+- package-ecosystem: "bundler"   # See documentation for possible values
+  directory: "/"   # Location of package manifests
+  schedule:
+    interval: "daily"
+  groups:
       # This is the name of your group, it will be used in PR titles and branch names
-      ruby-deps:
+    ruby-deps:
         # A pattern can be...
-        patterns:
-          - "*"
-  - package-ecosystem: "github-actions"
-    directory: "/"
-    schedule:
-      interval: "weekly"
-    groups:
-      actions-deps:
-        patterns:
-          - "*"
+      patterns:
+      - "*"
+  cooldown:
+    default-days: 7
+- package-ecosystem: "github-actions"
+  directory: "/"
+  schedule:
+    interval: "weekly"
+  groups:
+    actions-deps:
+      patterns:
+      - "*"
+  cooldown:
+    default-days: 7
